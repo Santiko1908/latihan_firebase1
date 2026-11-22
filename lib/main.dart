@@ -52,3 +52,23 @@ class AuthWrapper extends StatelessWidget {
     );
   }
 }
+
+/// Halaman Login
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Login Firebase')),
+      body: const Center(
+        child: Text('Halaman Login', style: TextStyle(fontSize: 24)),
+      ),
+    );
+  }
+}
