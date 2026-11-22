@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// Widget penyaring untuk menentukan halaman mana yang dirender
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({Key? key}) : super(key: key);
 
@@ -35,7 +34,7 @@ class AuthWrapper extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        // Menampilkan loading saat mengecek status
+        // Mengecek apakah Firebase masih memuat status login
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
