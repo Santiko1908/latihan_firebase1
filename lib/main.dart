@@ -25,3 +25,31 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/// Widget penyaring untuk menentukan halaman mana yang dirender
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        // Menampilkan loading saat mengecek status
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        // Jika user sudah login
+        if (snapshot.hasData) {
+          return UserInfoScreen(user: snapshot.data!);
+        }
+
+        // Jika user belum login
+        return const LoginScreen();
+      },
+    );
+  }
+}
